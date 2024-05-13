@@ -1,3 +1,12 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #282c34;
+  color: white;
+  text-align: center;
+}
+
 .test {
   background: blueviolet;
   color: white;
