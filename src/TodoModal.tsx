@@ -24,7 +24,6 @@ const TodoModal: React.FC<TodoModalProps> = ({ show, todo, handleClose }) => {
                 <Modal.Footer>
                     <Button onClick={handleClose}>Close</Button>
                 </Modal.Footer>
-                {/* todo에 값이 존재하면 todo, undefined면 렌더링하지 않겠다는 의미 */}
             </Modal>
         </div>
     )

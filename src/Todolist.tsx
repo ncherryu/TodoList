@@ -15,7 +15,7 @@ const TodoList: React.FC = () => {
         { id: 1, text: '공부하기', isChecked: false },
         { id: 2, text: '잠자기', isChecked: false },
         { id: 3, text: '미팅하기', isChecked: false }
-    ]); // 바인딩된 데이터가 변경되면 자동으로 재랜더링해줌
+    ]);
 
     const [newTodo, setNewTodo] = useState<string>('');
     const [showDetail, setShowDetail] = useState<boolean>(false);
