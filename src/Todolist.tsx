@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Form, Container, Row, Col } from 'react-bootstrap';
 import TodoModal from './TodoModal';
 import './Todolist.css';
 
@@ -52,39 +52,50 @@ const TodoList: React.FC = () => {
 
     return (
         <div>
-            <h1>{title}</h1>
-            <p></p>
-            <div className='container'>
-                <form action="" onSubmit={(e) => addTodo(e)}>
-                    <input type="text"
-                        placeholder='할 일 입력'
-                        style={{ marginRight: '10px', writingMode: 'horizontal-tb' }}
-                        onChange={(e) => setNewTodo(e.target.value)} value={newTodo} />
-                    {/* <Form.Control type="text" placeholder="Normal text" className='w-75' /> */}
-                    <Button variant='primary' onClick={() => addTodo(null)}>추가</Button>
-                </form>
-                <p></p>
-                <div className='board'>
+            <Row>
+                <h1>{title}</h1>
+            </Row>
+            <Form onSubmit={(e) => addTodo(e)} className='my-4'>
+                <Row className="justify-content-center">
+                    <Col xs={6} className='text-end'>
+                        <Form.Control type="text"
+                            placeholder="할 일 입력"
+                            onChange={(e) => setNewTodo(e.target.value)} value={newTodo} />
+                    </Col>
+                    <Col xs='auto'>
+                        <Button variant='primary' onClick={() => addTodo(null)}>추가</Button>
+                    </Col>
+                </Row>
+            </Form>
+            <Container>
+                <Row className='board'>
                     <ul>
                         {
-                            todos.map(todo =>
-                                <li key={todo.id}>
-                                    <input type="checkbox" className='checkbox'
-                                        onChange={() => handleCheckedChange(todo.id)} />
-                                    <span onClick={() => handleTodoClick(todo)}>
-                                        {
-                                            todo.isChecked ?
-                                                <del>{todo.text}</del> :
-                                                <span>{todo.text}</span>
-                                        }
-                                    </span>
-                                    <button className='delbutton' onClick={() => { removeTodo(todo.id) }}>삭제</button>
-                                </li>
-                            )
+                            todos.map(todo => {
+                                return (
+                                    <li key={todo.id}>
+                                        <Row className='align-items-center my-1'>
+                                            <Col xs={1} className='text-center'>
+                                                <Form.Check onChange={() => handleCheckedChange(todo.id)} />
+                                            </Col>
+                                            <Col xs={9} onClick={() => handleTodoClick(todo)}>
+                                                {
+                                                    todo.isChecked ?
+                                                        <del>{todo.text}</del> :
+                                                        <span>{todo.text}</span>
+                                                }
+                                            </Col>
+                                            <Col xs={2} className='text-end'>
+                                                <Button variant='outline-danger' onClick={() => { removeTodo(todo.id) }}>삭제</Button>
+                                            </Col>
+                                        </Row>
+                                    </li>)
+
+                            })
                         }
                     </ul>
-                </div>
-            </div>
+                </Row>
+            </Container >
             <TodoModal show={showDetail} todo={selectedTodo} handleClose={handleCloseDetail}></TodoModal>
         </div>
 
